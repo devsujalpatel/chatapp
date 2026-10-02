@@ -37,11 +37,12 @@ export const validateRequest = (schemas: RequestValidationSchemas) => {
       next();
     } catch (error) {
       if (error instanceof ZodError) {
-        return next(
+        next(
           new HttpError(422, 'Validation Error', {
             issues: formatedError(error),
           }),
         );
+        return;
       }
       next(error);
     }

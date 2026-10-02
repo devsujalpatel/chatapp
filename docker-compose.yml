@@ -1,0 +1,23 @@
+services:
+  auth-db:
+    image: mysql:latest
+    container_name: chatapp-auth-db
+    environment:
+      MYSQL_DATABASE: ${AUTH_DB_NAME:-chatapp_auth_service}
+      MYSQL_USER: ${AUTH_DB_USER:-chatapp_auth_user}
+      MYSQL_PASSWORD: ${AUTH_DB_PASSWORD:-chatapp_auth_password}
+      MYSQL_ROOT_PASSWORD: ${AUTH_DB_ROOT_PASSWORD:-root_password}
+    command: ['mysqld', '--authentication-policy=caching_sha2_password']
+    ports:
+      - '${AUTH_DB_PORT:-3306}:3306'
+    volumes:
+      - auth-db-data:/var/lib/mysql
+    networks:
+      - chatapp-network
+
+volumes:
+  auth-db-data:
+
+networks:
+  chatapp-network:
+    driver: bridge
