@@ -1,5 +1,5 @@
-import type { ZodObject, ZodRawShape } from "zod";
-import { z } from "zod";
+import type { ZodObject, ZodRawShape } from 'zod';
+import { z } from 'zod';
 
 interface EnvOptions {
   source?: NodeJS.ProcessEnv;
@@ -12,7 +12,7 @@ export const createEnv = <TSchema extends ZodRawShape>(
   schema: ZodObject<TSchema>,
   options: EnvOptions = {},
 ): SchemaOutput<TSchema> => {
-  const { source = process.env, serviceName = "service" } = options;
+  const { source = process.env, serviceName = 'service' } = options;
   const parsed = schema.safeParse(source);
   if (!parsed.success) {
     const formatedErrors = z.treeifyError(parsed.error);
