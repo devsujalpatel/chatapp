@@ -2,7 +2,7 @@ import express, { type Application } from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
 import { errorHandler } from '@/middleware/error-hanlder';
-import { registerRoutes } from './routes';
+import { registerRoutes } from '@/routes';
 
 export const createApp = (): Application => {
   const app = express();
