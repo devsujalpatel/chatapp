@@ -13,7 +13,7 @@ export interface UserData {
   id: string;
   email: string;
   displayName: string;
-  createdAt: Date;
+  createdAt: string;
 }
 
 export interface AuthTokens {
